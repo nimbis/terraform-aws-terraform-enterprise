@@ -187,6 +187,18 @@ variable "tags" {
   default     = {}
 }
 
+variable "enable_ssm_access" {
+  type        = bool
+  description = "Add an IAM policy to EC2 instances that allows AWS Session Manager access."
+  default     = false
+}
+
+variable "arn_format" {
+  type        = string
+  description = "ARN format to be used by IAM policies. May be changed to support deployment in GovCloud/China regions."
+  default     = "arn:aws"
+}
+
 
 ### ================================ External Services Support
 

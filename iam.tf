@@ -23,3 +23,8 @@ resource "aws_iam_instance_profile" "ptfe" {
   role = aws_iam_role.ptfe.name
 }
 
+resource "aws_iam_role_policy_attachment" "ptfe_ssm" {
+  count      = var.enable_ssm_access ? 1 : 0
+  role       = aws_iam_role.ptfe.name
+  policy_arn = "${var.arn_format}:iam::aws:policy/AmazonSSMManagedInstanceCore"
+}
