@@ -106,6 +106,7 @@ data "template_file" "cloud_config_secondary" {
     airgap_installer_url = var.airgap_package_url == "" ? "" : local.internal_airgap_url
     ca_bundle_url        = var.ca_bundle_url
     import_key           = var.import_key
+    startup_script       = base64gzip(var.startup_script)
   }
 }
 

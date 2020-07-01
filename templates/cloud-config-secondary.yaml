@@ -39,6 +39,14 @@ write_files:
   permissions: "0400"
   content: "${assistant_token}"
 
+%{ if startup_script != "" }
+- path: /var/lib/cloud/scripts/per-once/000-user-startup-script.sh
+  owner: root:root
+  permissions: "0555"
+  encoding: gz+b64
+  content: ${startup_script}
+%{ endif }
+
 %{ if airgap_installer_url != "" }
 - path: /etc/ptfe/airgap-installer-url
   owner: root:root
